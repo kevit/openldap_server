@@ -19,6 +19,7 @@ galaxy_info:
       - quantal
       - raring
       - saucy
+      - xenial
   categories:
    - system
 dependencies: []
