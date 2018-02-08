@@ -3,7 +3,6 @@
   gather_facts: no
   pre_tasks:
     - raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal ca-certificates python-pip python-requests)
-    - setup: 
+    - setup:
   roles:
     - { role: openldap_server }
-
