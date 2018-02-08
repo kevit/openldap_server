@@ -21,7 +21,8 @@
 - name: Generate the root password for ldap
   shell: slappasswd -s {{ openldap_server_rootpw }}
   register: root_password
-  run_once: true
+  when: root_password is undefined
+  changed_when: False
 
 - name: Copy the slapd.conf configuration file for Redhat
   template: src=slapd.conf.j2 dest={{ openldap_server_app_path }}/slapd.conf
@@ -32,7 +33,7 @@
 - name: Copy the slapd.conf configuration file
   template: src=slapd.conf_ubuntu.j2 dest={{ openldap_server_app_path }}/slapd.conf
   when: ansible_os_family == "Debian"
-  run_once: true
+  changed_when: False
   notify:
    - restart slapd
 
